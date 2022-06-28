@@ -15,10 +15,14 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 // Formulario para loguearse
   form: FormGroup;
+  // mostrar spinner cuando es true
+  spinner:boolean;
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
               private router:Router) {
+
+    this.spinner = false;
 
     this.form = this.formBuilder.group({
       email: ['',[Validators.required]],
@@ -39,15 +43,18 @@ export class LoginComponent implements OnInit {
 
   loguearse(e:Event){
     e.preventDefault();
-
+    this.spinner = true;
     if(this.form.valid){
       this.loginService.login(this.form.value).subscribe({
+
         next: data  => {
           console.log("DATOS QUE VIENEN DEL SERVIDOR LUEGO DE LOGUEARSE");
           console.log(data); 
+          this.spinner = false;
           this.router.navigate(['/home']);
       },
         error: error=>{
+          this.spinner = false;
           if(error.status === 401){
             Swal.fire(
               'No autorizado',
@@ -58,6 +65,7 @@ export class LoginComponent implements OnInit {
         } 
       },)
     }else{
+      this.spinner = false;
       this.form.markAllAsTouched();
     }
   }

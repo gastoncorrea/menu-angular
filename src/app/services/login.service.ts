@@ -25,4 +25,10 @@ export class LoginService {
         return data; 
     }));
   }
+
+  get UsuarioAutenticado()
+  { 
+    console.log(this.currentUserSubject.value.token);
+    return this.currentUserSubject.value
+  }
 }
