@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="container"> 
+    <h2>Buscar platos:</h2>
+    <div class="mx-auto p-3 container border color-fondo">
+        <label class="form-label" for="agregarPlato">Busque un plato para agregar al menu</label>
+        <input class="form-control" formControlName="plato" (keyup)="buscarPlato($event)" type="text" id="agregarPlato" placeholder="Buscar plato" aria-label="default input example">
+    </div>
+    <button type="submit" class="btn btn-success my-2">Agregar al Menu</button>
+</form>
+<div class="container">
+<div class="row">
+    <app-platos class="col-sm-12 col-md-6 col-lg-3" [platoTraidos]="platos"></app-platos>
+</div>
+</div>

@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { InterceptorService } from './services/interceptor.service';
+import { PlatosComponent } from './components/platos/platos.component';
+import { BuscarPlatosComponent } from './components/buscar-platos/buscar-platos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PlatosComponent,
+    BuscarPlatosComponent
   ],
   imports: [
     BrowserModule,

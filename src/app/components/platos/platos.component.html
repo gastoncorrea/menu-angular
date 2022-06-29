@@ -1,0 +1,10 @@
+<div class="list-group container my-5" *ngFor="let plato of platos">
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{plato.title}}</h5>
+        <small>boton Eliminar</small>
+      </div>
+      <p class="mb-1"> </p>
+      <img [src]="plato.image" alt="">
+    </a>
+  </div>

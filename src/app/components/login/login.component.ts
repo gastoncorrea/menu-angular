@@ -61,6 +61,12 @@ export class LoginComponent implements OnInit {
               'Sus usuario o contraseña son incorrectos',
               'error'
             )
+          }else{
+            Swal.fire(
+              'Se produjo un error',
+              'Vuelva a intentarlo',
+              'error'
+            )
           }
         } 
       },)
