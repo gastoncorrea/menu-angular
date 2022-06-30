@@ -1,13 +1,87 @@
-<form [formGroup]="form" class="container"> 
-    <h2>Buscar platos:</h2>
-    <div class="mx-auto p-3 container border color-fondo">
-        <label class="form-label" for="agregarPlato">Busque un plato para agregar al menu</label>
-        <input class="form-control" formControlName="plato" (keyup)="buscarPlato($event)" type="text" id="agregarPlato" placeholder="Buscar plato" aria-label="default input example">
-    </div>
-    <button type="submit" class="btn btn-success my-2">Agregar al Menu</button>
+<form [formGroup]="form" class="container">
+  <h2>Buscar platos:</h2>
+  <div class="mx-auto p-3 container border color-fondo">
+    <label class="form-label" for="agregarPlato"
+      >Busque un plato para agregar al menu</label
+    >
+    <input
+      class="form-control"
+      formControlName="plato"
+      (keyup)="buscarPlato($event)"
+      type="text"
+      id="agregarPlato"
+      placeholder="Buscar plato"
+      aria-label="default input example"
+    />
+  </div>
 </form>
 <div class="container">
-<div class="row">
-    <app-platos class="col-sm-12 col-md-6 col-lg-3" [platoTraidos]="platos"></app-platos>
-</div>
+  <div class="row">
+    <div
+      class="list-group container my-5 col-sm-12 col-md-6 col-lg-3"
+      *ngFor="let plato of platos"
+    >
+      <div
+        class="list-group-item list-group-item-action"
+        aria-current="true"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ plato.title }}</h5>
+          <!-- boton que abre ventana modal -->
+          <button
+            class="btn"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#verPlato"
+            (click)="cargarDatosModal(plato)"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="verPlato"
+            tabindex="-1"
+            aria-labelledby="verPlatoModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="verPlatoModalLabel">
+                    Detalles del plato:
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body" *ngIf="infoPlato" >
+                    <h3>{{infoPlato.sourceName}}</h3>
+                    <img [src]="infoPlato.image" [alt]="infoPlato.image" class="w-100">
+                    <p>{{infoPlato.title}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <button type="button" class="btn btn-primary" (click)="agregarPlato(infoPlato)">
+                    Agregar al menú
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mb-1"></p>
+        <img [src]="plato.image" [alt]="plato.image" class="w-100" />
+      </div>
+    </div>
+  </div>
 </div>

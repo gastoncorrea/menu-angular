@@ -17,6 +17,9 @@ export class BuscarPlatosComponent implements OnInit {
   valorPlato:any;
   // Variable que guarda platos o recetas que vienen del servidor
   platos:any;
+  // traer un plato con su information
+  infoPlato:any;
+
 
   private subjectKeyUp = new Subject<any>();
 
@@ -57,5 +60,16 @@ export class BuscarPlatosComponent implements OnInit {
             }})
         }
       })
+  }
+
+  cargarDatosModal(plato:any){
+    this.buscarPlatoService.obtenerUnPlato(plato.id).subscribe(data => {
+      console.log(data);
+      this.infoPlato = data;
+    })
+  }
+
+  agregarPlato(plato:any){
+    
   }
 }
