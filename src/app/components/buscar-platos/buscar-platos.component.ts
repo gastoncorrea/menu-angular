@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
 import { debounceTime } from "rxjs/operators";
+
+import { PlatoService } from 'src/app/services/plato.service';
 import { BuscarPlatoService} from '../../services/buscar-plato.service';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -24,7 +26,8 @@ export class BuscarPlatosComponent implements OnInit {
   private subjectKeyUp = new Subject<any>();
 
   constructor( private formBuilder: FormBuilder,
-                private buscarPlatoService : BuscarPlatoService) {
+                private buscarPlatoService : BuscarPlatoService,
+                private platoService: PlatoService) {
     this.form = this.formBuilder.group({
       plato:['',[]]
     })
@@ -69,7 +72,4 @@ export class BuscarPlatosComponent implements OnInit {
     })
   }
 
-  agregarPlato(plato:any){
-    
-  }
 }

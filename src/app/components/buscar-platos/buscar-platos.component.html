@@ -59,7 +59,7 @@
                   ></button>
                 </div>
                 <div class="modal-body" *ngIf="infoPlato" >
-                    <h3>{{infoPlato.sourceName}}</h3>
+                    <h3>{{infoPlato.title}}</h3>
                     <img [src]="infoPlato.image" [alt]="infoPlato.image" class="w-100">
                     <p>{{infoPlato.title}}</p>
                 </div>
@@ -71,7 +71,7 @@
                   >
                     Cancelar
                   </button>
-                  <button type="button" class="btn btn-primary" (click)="agregarPlato(infoPlato)">
+                  <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">
                     Agregar al menú
                   </button>
                 </div>
